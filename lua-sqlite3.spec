@@ -1,14 +1,18 @@
+# TODO
+# - missing runtime dep for parent dirs?
 Summary:	Lua-Sqlite3 is a binding of Sqlite3 for Lua
 Summary(hu.UTF-8):	Lua-Sqlite3 Sqlite3 kapcsolódási felület Lua-hoz.
 Name:		lua-sqlite3
 Version:	0.4.1
 Release:	1
 License:	BSD-like
+# (existing?/)new group for Lua
 Group:		Development/Languages
 Source0:	http://luaforge.net/frs/download.php/1611/%{name}-%{version}.tar.bz2
 # Source0-md5:	eb14c0b5c4bf8e0052dc2d054386717a
 URL:		http://luaforge.net/projects/lua-sqlite3/
 BuildRequires:	lua51-devel
+BuildRequires:	sed >= 4.0
 BuildRequires:	sqlite3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,19 +31,22 @@ ha awesome3-at használsz liferea-val vagy newsbeuter-rel.
 
 %build
 %configure \
-	--with-lua-includedir=%{_includedir}/lua51/ \
-	--with-lua=%{_bindir}/lua51 --with-lua-libdir=%{_libdir}/lua/5.1/
+	--with-lua-includedir=%{_includedir}/lua51 \
+	--with-lua=%{_bindir}/lua51 \
+	--with-lua-libdir=%{_libdir}/lua/5.1
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/lua/5.1
+install -d $RPM_BUILD_ROOT{%{_datadir},%{_libdir}}/lua/5.1
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+# TODO: patch makefile instead
 mv $RPM_BUILD_ROOT%{_libdir}/lua/{*.so,5.1}
-install -d $RPM_BUILD_ROOT%{_datadir}/lua/5.1/
-mv $RPM_BUILD_ROOT%{_libdir}/lua/*.lua $RPM_BUILD_ROOT%{_datadir}/lua/5.1/
-sed -i -r "s|(shared_lib_path =.*)\"|\1/5.1\"|" $RPM_BUILD_ROOT%{_datadir}/lua/5.1/libluasqlite3-loader.lua
+mv $RPM_BUILD_ROOT{%{_libdir}/lua/*.lua,%{_datadir}/lua/5.1}
+%{__sed} -i -e 's#\(shared_lib_path =.*)"#\1/5.1"#' $RPM_BUILD_ROOT%{_datadir}/lua/5.1/libluasqlite3-loader.lua
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -47,5 +54,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE README examples/*
+# XXX missing runtime dep for parent dirs?
 %{_libdir}/lua/5.1/*.so
 %{_datadir}/lua/5.1/*.lua
