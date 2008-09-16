@@ -55,5 +55,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE README examples/*
 # XXX missing runtime dep for parent dirs?
-%{_libdir}/lua/5.1/*.so
+%attr(755,root,root) %{_libdir}/lua/5.1/*.so
 %{_datadir}/lua/5.1/*.lua
