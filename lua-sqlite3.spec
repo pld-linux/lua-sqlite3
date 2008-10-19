@@ -4,7 +4,7 @@ Summary:	Lua-Sqlite3 is a binding of Sqlite3 for Lua
 Summary(hu.UTF-8):	Lua-Sqlite3 Sqlite3 kapcsolódási felület Lua-hoz.
 Name:		lua-sqlite3
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	BSD-like
 # (existing?/)new group for Lua
 Group:		Development/Languages
@@ -53,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README examples/*
+%doc LICENSE README examples/* documentation.html
 # XXX missing runtime dep for parent dirs?
 %attr(755,root,root) %{_libdir}/lua/5.1/*.so
 %{_datadir}/lua/5.1/*.lua
