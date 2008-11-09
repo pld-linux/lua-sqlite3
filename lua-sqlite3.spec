@@ -46,7 +46,7 @@ install -d $RPM_BUILD_ROOT{%{_datadir},%{_libdir}}/lua/5.1
 # TODO: patch makefile instead
 mv $RPM_BUILD_ROOT%{_libdir}/lua/{*.so,5.1}
 mv $RPM_BUILD_ROOT{%{_libdir}/lua/*.lua,%{_datadir}/lua/5.1}
-%{__sed} -i -e 's#\(shared_lib_path =.*)"#\1/5.1"#' $RPM_BUILD_ROOT%{_datadir}/lua/5.1/libluasqlite3-loader.lua
+%{__sed} -i -e 's#\(shared_lib_path =.*\)"#\1/5.1"#' $RPM_BUILD_ROOT%{_datadir}/lua/5.1/libluasqlite3-loader.lua
 
 %clean
 rm -rf $RPM_BUILD_ROOT
