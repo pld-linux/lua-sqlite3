@@ -1,10 +1,13 @@
 # TODO
 # - missing runtime dep for parent dirs?
+# - fix build problem (/usr/bin/ld: cannot find -llualib - at me ./configure says that
+#   checking if we need -llualib... no
+#   but at the build server say "yes"
 Summary:	Lua-Sqlite3 is a binding of Sqlite3 for Lua
 Summary(hu.UTF-8):	Lua-Sqlite3 Sqlite3 kapcsolódási felület Lua-hoz.
 Name:		lua-sqlite3
 Version:	0.4.1
-Release:	2
+Release:	2.1
 License:	BSD-like
 # (existing?/)new group for Lua
 Group:		Development/Languages
