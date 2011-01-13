@@ -13,7 +13,7 @@ License:	BSD-like
 Group:		Development/Languages
 Source0:	http://luaforge.net/frs/download.php/1611/%{name}-%{version}.tar.bz2
 # Source0-md5:	eb14c0b5c4bf8e0052dc2d054386717a
-URL:		http://luaforge.net/projects/lua-sqlite3/
+URL:		http://lua.sqlite.org/
 BuildRequires:	lua51-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	sqlite3-devel
